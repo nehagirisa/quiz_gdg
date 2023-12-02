@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:quiz_gdg/Quiz/Quiz_model.dart';
+import 'package:quiz_gdg/Quiz/result.dart';
 // import 'package:quiz_gdg/utils/colors.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -83,10 +84,22 @@ class _QuizAppState extends State<QuizApp> {
         currentQuestionIndex++;
       });
     } else {
-      showResultDialog();
+      result();
+      // showResultDialog();
     }
   }
 
+void result() {
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (_) => ResultPage(
+        score: score,
+        totalQuestions: questions.length,
+      ),
+    ),
+  );
+}
   void showResultDialog() {
     // ignore: inference_failure_on_function_invocation
     showDialog(
@@ -233,3 +246,6 @@ class _QuizAppState extends State<QuizApp> {
     );
   }
 }
+
+
+
