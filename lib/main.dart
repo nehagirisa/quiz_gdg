@@ -1,20 +1,20 @@
 
 import 'package:flutter/material.dart';
-import 'package:quiz_gdg/Quiz/Quiz.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:quiz_gdg/sign_up.dart';
 
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
       options: const FirebaseOptions(
-    apiKey: "AIzaSyB2sRX5l0dv8eQHjVbBa7ZgUXd_WPauA5w",
-    authDomain: "microbiomesuperhero-526b1.firebaseapp.com",
-    projectId: "microbiomesuperhero-526b1",
-    storageBucket: "microbiomesuperhero-526b1.appspot.com",
-    messagingSenderId: "605008213075",
-    appId: "1:605008213075:web:0255700d053590963082a6",
-    measurementId: "G-TRCY9XGD65",
+    apiKey: "AIzaSyAYiGyuFT0tCLWAfMa8DUm230BLslusRB8",
+  authDomain: "quiz-357ec.firebaseapp.com",
+  projectId: "quiz-357ec",
+  storageBucket: "quiz-357ec.appspot.com",
+  messagingSenderId: "522613745788",
+  appId: "1:522613745788:web:2af4c48b4dea6b5f70c1f9",
+  measurementId: "G-PNLYX424QB"
   ));
   runApp(const MyApp());
 }
@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
       //   //primarySwatch: Colors.black,
 
       // ),
-      home: QuizApp()
+      home: sign_up()
     );
   }
 }

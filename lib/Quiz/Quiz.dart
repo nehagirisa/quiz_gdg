@@ -24,24 +24,6 @@ class _QuizAppState extends State<QuizApp> {
     fetchQuestions();
   }
 
-  // Future<void> fetchQuestions() async {
-  //   final QuerySnapshot snapshot =
-  //       await FirebaseFirestore.instance.collection('quizzes').limit(10).get();
-
-  //   setState(() {
-  //      final List<Question> allQuestions = snapshot.docs.map((doc) {
-  //       final List<String> options = List.from(doc['options'] as List);
-  //       return Question(
-  //         question: doc['question'].toString(),
-  //         image: doc['image'].toString(),
-  //         options: options,
-  //         correctAnswerIndex: doc['correctAnswer'].toString(),
-  //          questions = [allQuestions[randomIndex]];
-  //       );
-        
-  //     }).toList();
-  //   });
-  // }
     Future<void> fetchQuestions() async {
     final QuerySnapshot snapshot =
         await FirebaseFirestore.instance.collection('quizzes').limit(5).get();
