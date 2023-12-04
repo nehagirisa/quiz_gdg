@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:quiz_gdg/Quiz/Quiz.dart';
+import 'package:quiz_gdg/servey.dart';
 
 import 'package:quiz_gdg/widget/custome_textfield.dart';
 
@@ -106,7 +107,7 @@ class _sign_upState extends State<sign_up> {
                 child: TextButton(
                     onPressed: () async{
                       SignUP();
-                      await Navigator.push(context,MaterialPageRoute(builder: (_)=>QuizApp()));
+                      await Navigator.push(context,MaterialPageRoute(builder: (_)=>MentalHealth()));
                       ScaffoldMessenger.of(context).showSnackBar(
                        const SnackBar(
                           content: Text('user is added'),
