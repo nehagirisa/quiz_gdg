@@ -23,6 +23,7 @@ class SurveyResultPage extends StatelessWidget {
     double percentage = totalScore / 100.0; // Assuming the maximum possible score is 100
 
     return Scaffold(
+       backgroundColor: Color.fromARGB(255, 238, 184, 47),
      
       body: Center(
         child: Padding(
@@ -34,24 +35,36 @@ class SurveyResultPage extends StatelessWidget {
               SizedBox(height: 10),
               Text('Interpretation: ${getResultInterpretation()}'),
               const SizedBox(height: 20),
-              Container(
-                width: 200,
-                height: 200,
-                child: LiquidCircularProgressIndicator(
-                  value: percentage, // Pass the converted percentage value
-                  backgroundColor: Colors.grey[300]!,
-                  valueColor: AlwaysStoppedAnimation(Colors.blue),
-                  borderColor: Colors.blue,
-                  borderWidth: 5.0,
-                  direction: Axis.vertical,
-                  center: Text(
-                    '${(percentage * 100).toStringAsFixed(2)}%',
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
+              Stack(
+                children: [
+                  
+                  Image.asset(
+                    'assets/logo1.png',
+                    height: 400,
+                    width: 400,
+                    fit: BoxFit.cover,
+                  ),
+                  Container(
+                    width: 200,
+                    height: 200,
+                    child: LiquidCircularProgressIndicator(
+                      value: percentage, // Pass the converted percentage value
+                      backgroundColor: Colors.grey[300]!,
+                      valueColor: AlwaysStoppedAnimation(Colors.blue),
+                      borderColor: Colors.blue,
+                      borderWidth: 5.0,
+                      direction: Axis.vertical,
+                      center: Text(
+                        '${(percentage * 100).toStringAsFixed(2)}%',
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ),
                   ),
-                ),
+                  
+                ],
               ),
             ],
           ),
