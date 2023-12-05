@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:quiz_gdg/survery-result.dart';
@@ -20,6 +21,8 @@ class _MentalHealthState extends State<MentalHealth> {
     'Agree',
     'Strongly Agree',
   ];
+  final User? user = FirebaseAuth.instance.currentUser;
+  Map<int, bool> isOptionSelectedMap = {};
 
   @override
   void initState() {
@@ -48,6 +51,9 @@ class _MentalHealthState extends State<MentalHealth> {
 
   void submitSurvey() {
     int totalScore = questionScores.values.reduce((a, b) => a + b);
+    // Store the score in Firestore
+    storeScoreInFirestore(totalScore);
+
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -56,14 +62,26 @@ class _MentalHealthState extends State<MentalHealth> {
     );
   }
 
+  void storeScoreInFirestore(int totalScore) {
+    final User? user = FirebaseAuth.instance.currentUser;
+
+    if (user != null) {
+      FirebaseFirestore.instance
+          .collection('users')
+          .doc(user.uid)
+          .update({
+            'score': totalScore,
+            // Add more fields if needed
+          })
+          .then((value) => print('Score updated successfully'))
+          .catchError((error) => print('Failed to update score: $error'));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 238, 184, 47),
-      // appBar: AppBar(
-      //  // automaticallyImplyLeading: false,
-      //   title: Text('Mental Health Survey'),
-      // ),
       body: PageView.builder(
         controller: _pageController,
         itemCount: questions.length,
@@ -106,17 +124,19 @@ class _MentalHealthState extends State<MentalHealth> {
                       children: [
                         Radio<int>(
                           fillColor: MaterialStateProperty.resolveWith<Color>(
-                              (Set<MaterialState> states) {
-                            if (states.contains(MaterialState.disabled)) {
-                              return Colors.blue.withOpacity(.32);
-                            }
-                            return Colors.blue;
-                          }),
+                            (Set<MaterialState> states) {
+                              if (states.contains(MaterialState.disabled)) {
+                                return Colors.blue.withOpacity(.32);
+                              }
+                              return Colors.blue;
+                            },
+                          ),
                           value: j * 2,
                           groupValue: questionScores[index + 1],
                           onChanged: (int? value) {
                             setState(() {
                               questionScores[index + 1] = value!;
+                              isOptionSelectedMap[index] = true;
                             });
                           },
                         ),
@@ -135,21 +155,23 @@ class _MentalHealthState extends State<MentalHealth> {
           ),
           SizedBox(height: 20),
           ElevatedButton(
-            onPressed: () {
-              // Move to the next question
-              if (index < questions.length - 1) {
-                _pageController.nextPage(
-                  duration: Duration(milliseconds: 300),
-                  curve: Curves.easeInOut,
-                );
-              } else {
-                // If it's the last question, submit the survey
-                submitSurvey();
-              }
-            },
+            onPressed: isOptionSelectedMap[index] == true
+                ? () {
+                    // Move to the next question only if an option is selected
+                    if (index < questions.length - 1) {
+                      _pageController.nextPage(
+                        duration: Duration(milliseconds: 300),
+                        curve: Curves.easeInOut,
+                      );
+                    } else {
+                      // If it's the last question, submit the survey
+                      submitSurvey();
+                    }
+                  }
+                : null,
             child: Text(index == questions.length - 1 ? 'Submit' : 'Next'),
           ),
-          Spacer(),
+          const Spacer(),
           Footer(),
         ],
       ),

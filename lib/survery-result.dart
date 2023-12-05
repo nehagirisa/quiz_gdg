@@ -1,28 +1,36 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:liquid_progress_indicator_v2/liquid_progress_indicator.dart';
 import 'package:quiz_gdg/widget/footer/footer.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-class SurveyResultPage extends StatelessWidget {
+class SurveyResultPage extends StatefulWidget {
   final int totalScore;
 
-  SurveyResultPage({required this.totalScore});
 
+  SurveyResultPage({required this.totalScore, });
+
+  @override
+  State<SurveyResultPage> createState() => _SurveyResultPageState();
+}
+
+class _SurveyResultPageState extends State<SurveyResultPage> {
   String getResultInterpretation() {
-    if (totalScore >= 10 && totalScore <= 25) {
+    if (widget.totalScore >= 10 && widget.totalScore <= 25) {
       return "Possible mental health concerns; seek professional help.";
-    } else if (totalScore > 25 && totalScore <= 35) {
+    } else if (widget.totalScore > 25 && widget.totalScore <= 35) {
       return "Average mental health; consider exploring strategies to enhance well-being.";
-    } else if (totalScore > 35 && totalScore <= 45) {
+    } else if (widget.totalScore > 35 && widget.totalScore <= 45) {
       return "Good mental health; continue practicing self-care and maintaining a healthy lifestyle.";
     } else {
       return "Excellent mental health; maintain healthy habits and seek support if needed.";
     }
   }
 
+
   @override
   Widget build(BuildContext context) {
-    double percentage = totalScore / 100.0; // Assuming the maximum possible score is 100
+    double percentage = widget.totalScore / 100.0; // Assuming the maximum possible score is 100
 
     return Scaffold(
        backgroundColor: Color.fromARGB(255, 238, 184, 47),
@@ -36,10 +44,10 @@ class SurveyResultPage extends StatelessWidget {
              const Text(
             "Mindfulness for Developers",
             style: TextStyle(
-                fontSize: 30, fontWeight: FontWeight.bold, color: Colors.blue),
+                fontSize: 28, fontWeight: FontWeight.bold, color: Colors.blue),
           ),
            SizedBox(height: 10),
-              Text('Total Score: $totalScore',
+              Text('Total Score: ${widget.totalScore}',
               style: TextStyle(
                 fontSize:25, fontWeight: FontWeight.bold, color: Colors.white),),
               SizedBox(height: 15),

@@ -7,7 +7,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:quiz_gdg/servey.dart';
 import 'package:quiz_gdg/widget/custome_textfield.dart';
 import 'package:quiz_gdg/widget/footer/footer.dart';
-import 'package:velocity_x/velocity_x.dart';
+
 
 class sign_up extends StatefulWidget {
   sign_up({super.key});
@@ -39,7 +39,7 @@ class _sign_upState extends State<sign_up> {
                 child: Text(
                   "Mindfulness for Developers",
                   style: TextStyle(
-                    fontSize: 30,
+                    fontSize: 28,
                     fontWeight: FontWeight.bold,
                     color: Colors.blue,
                   ),
