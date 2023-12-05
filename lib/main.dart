@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:quiz_gdg/servey.dart';
+
 
 import 'package:quiz_gdg/sign_up.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,13 +28,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
-        //  theme:
-        // ThemeData(flutter pub upgrade
+         theme:
+        ThemeData(
 
-        //   primaryColor: Colors.black,
-        //   //primarySwatch: Colors.black,
+          primaryColor: Colors.blue,
+          
 
-        // ),
-        home: MentalHealth());
-  }
+        ),
+        home: sign_up()); }
 }

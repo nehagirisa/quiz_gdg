@@ -5,7 +5,7 @@ class CustomeTextField extends StatelessWidget {
   const CustomeTextField({
     super.key,
     required this.hintText,
-    required this.contoller,
+    required this.contoller, required String? Function(dynamic value) validator, required bool obscureText, 
   });
   final String hintText;
   final TextEditingController contoller;

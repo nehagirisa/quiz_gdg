@@ -103,9 +103,15 @@ class _MentalHealthState extends State<MentalHealth> {
                 children: [
                   for (int j = 1; j <= 5; j++)
                     Row(
-                      
                       children: [
                         Radio<int>(
+                          fillColor: MaterialStateProperty.resolveWith<Color>(
+                              (Set<MaterialState> states) {
+                            if (states.contains(MaterialState.disabled)) {
+                              return Colors.blue.withOpacity(.32);
+                            }
+                            return Colors.blue;
+                          }),
                           value: j * 2,
                           groupValue: questionScores[index + 1],
                           onChanged: (int? value) {
@@ -118,11 +124,8 @@ class _MentalHealthState extends State<MentalHealth> {
                           radioLabels[j - 1],
                           style: const TextStyle(
                             fontSize: 18, // Set font size
-                             // Set text color
                           ),
                         ),
-                        
-                        
                         SizedBox(width: 10),
                       ],
                     ),

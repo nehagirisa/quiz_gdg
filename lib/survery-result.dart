@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:liquid_progress_indicator_v2/liquid_progress_indicator.dart';
+import 'package:quiz_gdg/widget/footer/footer.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class SurveyResultPage extends StatelessWidget {
   final int totalScore;
@@ -31,41 +33,61 @@ class SurveyResultPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text('Total Score: $totalScore'),
-              SizedBox(height: 10),
-              Text('Interpretation: ${getResultInterpretation()}'),
-              const SizedBox(height: 20),
+             const Text(
+            "Mindfulness for Developers",
+            style: TextStyle(
+                fontSize: 30, fontWeight: FontWeight.bold, color: Colors.blue),
+          ),
+           SizedBox(height: 10),
+              Text('Total Score: $totalScore',
+              style: TextStyle(
+                fontSize:25, fontWeight: FontWeight.bold, color: Colors.white),),
+              SizedBox(height: 15),
+              
               Stack(
                 children: [
                   
-                  Image.asset(
+                   Image.asset(
                     'assets/logo1.png',
-                    height: 400,
-                    width: 400,
+                    height:context.isMobile ? 300:400,
+                    width: context.isMobile ? 300:400,
                     fit: BoxFit.cover,
                   ),
-                  Container(
-                    width: 200,
-                    height: 200,
-                    child: LiquidCircularProgressIndicator(
-                      value: percentage, // Pass the converted percentage value
-                      backgroundColor: Colors.grey[300]!,
-                      valueColor: AlwaysStoppedAnimation(Colors.blue),
-                      borderColor: Colors.blue,
-                      borderWidth: 5.0,
-                      direction: Axis.vertical,
-                      center: Text(
-                        '${(percentage * 100).toStringAsFixed(2)}%',
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
+                     Positioned(
+                      top:context.isMobile? 79: 105,
+                      left:context.isMobile? 78:108,
+                       child: Container(
+                        width:context.isMobile ? 150:180,
+                        height: context.isMobile ? 150:180,
+                        child: LiquidCircularProgressIndicator(
+                          value: percentage, // Pass the converted percentage value
+                          backgroundColor: Colors.grey[300]!,
+                          valueColor: AlwaysStoppedAnimation(Colors.blue),
+                          borderColor: Colors.blue,
+                          borderWidth: 4.0,
+                          direction: Axis.vertical,
+                          center: Text(
+                            '${(percentage * 100).toStringAsFixed(2)}%',
+                            style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                  ),
-                  
+                                           ),
+                     ),
+                
                 ],
               ),
+                const SizedBox(height: 20),
+              Text("Interpretation",
+               style: TextStyle(
+                fontSize: 25, fontWeight: FontWeight.bold, color: Colors.blue),),
+                 Text(' ${getResultInterpretation()}',
+                  style: TextStyle(
+                fontSize: 23,  color: Colors.white),),
+                Spacer(),
+                Footer(),
             ],
           ),
         ),
