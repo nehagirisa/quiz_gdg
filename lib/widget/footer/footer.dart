@@ -3,11 +3,14 @@ import 'package:velocity_x/velocity_x.dart';
 
 class Footer extends StatelessWidget {
   const Footer({super.key});
-
+ 
   @override
   Widget build(BuildContext context) {
+    var screenSize = MediaQuery.of(context).size;
+    var screenHeight = screenSize.height;
+    var screenWidth = screenSize.width;
     return Container(
-        height: 100,
+        height: screenHeight * 0.15,
         width: double.infinity,
         color: const Color.fromARGB(255, 248, 248, 248),
         child: Row(
@@ -15,14 +18,15 @@ class Footer extends StatelessWidget {
           children: [
             Image.asset(
               'assets/gdg.png',
-              height: 150,
-              width: 150,
+              height: context.isMobile ? 100: 150,
+              width: context.isMobile ? 100: 150,
             ),
-            30.widthBox,
+           
+           SizedBox(height: screenHeight * 0.20,),
             Image.asset(
               'assets/microbiomeSuperhero.png',
-              height: 200,
-              width: 200,
+              height: context.isMobile ? 150: 200,
+              width: context.isMobile ? 150: 200,
             ),
           ],
         ));
