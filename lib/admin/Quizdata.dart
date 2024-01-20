@@ -50,13 +50,13 @@ class _QuizdataState extends State<Quizdata> {
  
   void addData() {
     String question = questionController.text;
-    String correctAnswer = correctAnserController.text;
+    // String correctAnswer = correctAnserController.text;
     
 
     _firestore.collection('quiz').add({
       'question': question,
-      'correctAnswer': correctAnswer,
-      'options': arrayFieldValues,
+      // 'correctAnswer': correctAnswer,
+      // 'options': arrayFieldValues,
     }).then((value) {
       print('Data added successfully');
       questionController.clear();
@@ -87,41 +87,41 @@ class _QuizdataState extends State<Quizdata> {
             ),
           ),
         
-          TextField(
-            controller: correctAnserController,
-            decoration: InputDecoration(
-              labelText: 'Currect Anser',
-            ),
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: TextField(
-                  controller: optionsController,
-                  decoration: InputDecoration(
-                    labelText: 'Options Field',
-                  ),
-                ),
-              ),
-              ElevatedButton(
-                onPressed: addArrayFieldValue,
-                child: Text('Add'),
-              ),
-            ],
-          ),
-          ListView.builder(
-            shrinkWrap: true,
-            itemCount: arrayFieldValues.length,
-            itemBuilder: (context, index) {
-              return ListTile(
-                title: Text(arrayFieldValues[index]),
-                trailing: IconButton(
-                  icon: Icon(Icons.delete),
-                  onPressed: () => removeArrayFieldValue(index),
-                ),
-              );
-            },
-          ),
+          // TextField(
+          //   controller: correctAnserController,
+          //   decoration: InputDecoration(
+          //     labelText: 'Currect Anser',
+          //   ),
+          // ),
+          // Row(
+          //   children: [
+          //     Expanded(
+          //       child: TextField(
+          //         controller: optionsController,
+          //         decoration: InputDecoration(
+          //           labelText: 'Options Field',
+          //         ),
+          //       ),
+          //     ),
+          //     ElevatedButton(
+          //       onPressed: addArrayFieldValue,
+          //       child: Text('Add'),
+          //     ),
+          //   ],
+          // ),
+          // ListView.builder(
+          //   shrinkWrap: true,
+          //   itemCount: arrayFieldValues.length,
+          //   itemBuilder: (context, index) {
+          //     return ListTile(
+          //       title: Text(arrayFieldValues[index]),
+          //       trailing: IconButton(
+          //         icon: Icon(Icons.delete),
+          //         onPressed: () => removeArrayFieldValue(index),
+          //       ),
+          //     );
+          //   },
+          // ),
           ElevatedButton(
             onPressed: addData,
             child: Text('Add Data'),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:quiz_gdg/Microbiomeservey.dart';
 
 import 'package:quiz_gdg/servey.dart';
 import 'package:quiz_gdg/widget/custome_textfield.dart';
@@ -36,21 +37,22 @@ class _sign_upState extends State<sign_up> {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               const Center(
-                child: Text(
-                  "Mindfulness for Developers",
-                  style: TextStyle(
-                    fontSize: 28,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.blue,
-                  ),
+                // child: Text(
+                //   "Mindfulness for Developers",
+                //   style: TextStyle(
+                //     fontSize: 28,
+                //     fontWeight: FontWeight.bold,
+                //     color: Colors.blue,
+                //   ),
+                // ),
+              ),
+           const  SizedBox(height: 20,),
+               Image.asset(
+                  'assets/superhero.png',
+                 
+                  fit: BoxFit.cover,
                 ),
-              ),
-              Image.asset(
-                'assets/logo1.png',
-                height: 200,
-                width: 200,
-                fit: BoxFit.cover,
-              ),
+              
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
@@ -127,7 +129,7 @@ class _sign_upState extends State<sign_up> {
                       await _signUp();
                       await Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (_) => MentalHealth()),
+                        MaterialPageRoute(builder: (_) => MicrobiomeSurvey()),
                       );
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(

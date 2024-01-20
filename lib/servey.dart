@@ -1,9 +1,8 @@
-import 'dart:html';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:quiz_gdg/survery-result.dart';
+import 'package:quiz_gdg/survey-result.dart';
 import 'package:quiz_gdg/widget/footer/footer.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -101,7 +100,6 @@ class _MentalHealthState extends State<MentalHealth> {
   Widget buildQuestionPage(int index) {
     var screenSize = MediaQuery.of(context).size;
     var screenHeight = screenSize.height;
-    var screenWidth = screenSize.width;
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Center(

@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:quiz_gdg/servey.dart';
-
-
+import 'package:quiz_gdg/Dashboard.dart';
+import 'package:quiz_gdg/Microbiomeservey.dart';
+import 'package:quiz_gdg/admin/Quizdata.dart';
+import 'package:quiz_gdg/surveyresult.dart';
 import 'package:quiz_gdg/sign_up.dart';
+
+
 
 
 void main() async {
@@ -28,11 +31,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
+        title: 'Quiz',
          theme:
         ThemeData(
           primaryColor: Colors.blue,
           
         ),
-        home: MentalHealth()); }
+        home: UserDataTable()); }
 }
